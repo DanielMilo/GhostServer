@@ -18,12 +18,18 @@ module.exports = {
             else{
                 const collection = client.db("ghostDB").collection("ghosts");
                 collection.find({}).project({_id: 0 }).toArray(function(err, docs) {
+
+                    if(err){
+                        console.log(err);
+                    }
                     //assert.equal(err, null);
                     console.log("Found the following records");
                     console.log(docs);
-                    res.send({ ghosts: docs });          
+                    res.send({ ghosts: docs });       
+                    
+                    client.close();
                 })
-                client.close();
+                
             }
         });
     },
