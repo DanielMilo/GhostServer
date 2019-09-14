@@ -1,10 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const port = 9443;
+console.log(process.env);
+const port = process.env["ghost-port"];
+
+
 
 const https = require('https');
-
 const ghosts = require('./DB/ghosts');
 /*
 const options = {

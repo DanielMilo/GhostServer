@@ -1,9 +1,10 @@
 const MongoClient = require('mongodb').MongoClient;
 const fs = require('fs');
 
-const config = JSON.parse(fs.readFileSync(__dirname + "/../config.json")).mongo;
-console.log(config);
-const uri = "mongodb+srv://" + config.user + ":" + config.pass + "@ghostdb-y3gee.mongodb.net/test?retryWrites=true&w=majority";
+const mongoUser = process.env["ghost-mongo-user"];
+const mongoPass = process.env["ghost-mongo-pass"];
+
+const uri = "mongodb+srv://" + mongoUser + ":" + mongoPass + "@ghostdb-y3gee.mongodb.net/test?retryWrites=true&w=majority";
              
 module.exports = {
     get: function(req,res){
