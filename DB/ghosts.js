@@ -1,11 +1,16 @@
 const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://ghostserver:Qpwj5wkOhd2AOIGp@ghostdb-y3gee.mongodb.net/test?retryWrites=true&w=majority";
+const fs = require('fs');
 
+const config = JSON.parse(fs.readFileSync(__dirname + "/../config.json")).mongo;
+console.log(config);
+const uri = "mongodb+srv://" + config.user + ":" + config.pass + "@ghostdb-y3gee.mongodb.net/test?retryWrites=true&w=majority";
+             
 module.exports = {
     get: function(req,res){
-        const client = new MongoClient(uri, { useNewUrlParser: true });
+        const client = new MongoClient(uri, { useUnifiedTopology: true, useNewUrlParser: true });
         client.connect(err => {
             if(err){
+                console.log(err);
                 res.status = 500;
                 res.send("ERROR")
             }
@@ -26,6 +31,7 @@ module.exports = {
         const client = new MongoClient(uri, { useNewUrlParser: true });
         client.connect(err => {
             if(err){
+                console.log(err);
                 res.status = 500;
                 res.send("ERROR")
             }
