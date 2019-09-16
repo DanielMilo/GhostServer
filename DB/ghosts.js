@@ -7,7 +7,7 @@ const mongoPass = process.env["ghost-mongo-pass"];
 const uri = "mongodb+srv://" + mongoUser + ":" + mongoPass + "@ghostdb-y3gee.mongodb.net/test?retryWrites=true&w=majority";
 
 const dbName = "ghostDB";
-const collection = "ghosts";
+const ghostCollection = "ghosts";
 
 module.exports = {
     get: function(req,res){
@@ -31,7 +31,7 @@ module.exports = {
                 res.send("ERROR")
             }
             else{
-                const collection = client.db(dbName).collection(collection);
+                const collection = client.db(dbName).collection(ghostCollection);
                 collection.find(query).project({_id: 0 }).toArray(function(err, docs) {
 
                     if(err){
@@ -59,7 +59,7 @@ module.exports = {
                 res.send("ERROR")
             }
             else{
-                const collection = client.db(dbName).collection(collection);
+                const collection = client.db(dbName).collection(ghostCollection);
                 
                 const newGhost = {};
                 
