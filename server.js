@@ -25,10 +25,12 @@ app.get('/', function(req,res){
     res.send("API Is alive!");
 })
 
-app.get('/Ghosts', ghosts.get);
+app.get('/ghosts', ghosts.get);
+app.get('/stages/:stageID/ghosts', ghosts.get);
 
 
-app.post('/Ghosts', ghosts.post);
+app.post('/ghosts', ghosts.post);
+app.post('/stages/:stageID/ghosts', ghosts.post);
 
 //https.createServer(options, app).listen(port);
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
