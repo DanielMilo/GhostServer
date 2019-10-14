@@ -29,7 +29,7 @@ module.exports = {
                 console.log(err);
                 res.status = 500;
                 res.send("ERROR")
-                
+
                 client.close();
             }
             else{
@@ -59,6 +59,7 @@ module.exports = {
                 console.log(err);
                 res.status = 500;
                 res.send("ERROR")
+                client.close();
             }
             else{
                 const collection = client.db(dbName).collection(scoreCollection);
